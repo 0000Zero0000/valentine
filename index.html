@@ -3,137 +3,207 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hayyyatiii, ill you be my Valentine? 💌</title>
-
-<!-- Pixel font -->
+<title>Hayyyatiii, will you be my Valentine? 💌</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
 <style>
-body {
-  font-family: "Press Start 2P", cursive;
-  background: linear-gradient(135deg, #fff0f5, #f8e1e9);
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  color: #333;
-}
+  body {
+    font-family: "Press Start 2P", cursive;
+    background: linear-gradient(135deg, #fff0f5, #ffe4e9, #f8d7da);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #333;
+    position: relative;
+  }
 
-/* Floating pixel hearts */
-.pixel-heart {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: #e91e63;
-  animation: float 6s linear infinite;
-  box-shadow:
-    16px 0 #e91e63,
-    0 16px #e91e63,
-    16px 16px #e91e63,
-    8px 24px #e91e63;
-}
+  /* Slower, gentler floating hearts & bears */
+  .pixel-heart, .pixel-bear {
+    position: absolute;
+    animation: float 12s linear infinite;
+    opacity: 0.7;
+  }
+  .pixel-heart {
+    width: 24px;
+    height: 24px;
+    background: #ff4081;
+    box-shadow: 24px 0 #ff4081, 0 24px #ff4081, 24px 24px #ff4081, 12px 36px #ff4081;
+  }
+  .pixel-bear {
+    width: 48px;
+    height: 48px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.25));
+  }
+  @keyframes float {
+    from { transform: translateY(110vh) rotate(0deg) scale(0.8); opacity: 0.85; }
+    to   { transform: translateY(-50vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
 
-@keyframes float {
-  from { transform: translateY(100vh) scale(1); opacity: 1; }
-  to   { transform: translateY(-20vh) scale(1.5); opacity: 0; }
-}
+  .card {
+    background: #ffffff;
+    border-radius: 40px;
+    padding: 60px 55px;
+    box-shadow: 0 35px 70px rgba(233,30,99,0.28), inset 0 0 0 12px #ffebee;
+    text-align: center;
+    z-index: 2;
+    max-width: 580px;
+    border: 8px solid #ff80ab;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -50px; left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    background: url('https://thumbs.dreamstime.com/b/ai-generated-illustration-pixel-art-teddy-bear-heart-shaped-balloons-ai-generated-illustration-pixel-art-317644629.jpg') center/contain no-repeat;
+    z-index: -1;
+    opacity: 0.18;
+  }
 
-/* Main card */
-.card {
-  background: white;
-  border-radius: 24px;
-  padding: 50px 40px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  text-align: center;
-  z-index: 2;
-}
+  h1 {
+    color: #d81b60;
+    font-size: 2.1rem;
+    margin: 1.5rem 0 3rem;
+    text-shadow: 4px 4px 0 #ffcccb;
+  }
 
-h1 {
-  color: #e91e63;
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-}
+  .bear-decor {
+    font-size: 4.5rem;
+    margin: 0 1.5rem;
+    display: inline-block;
+    animation: wiggle 5s infinite ease-in-out;
+  }
+  @keyframes wiggle {
+    0%,100% { transform: rotate(-5deg); }
+    50%     { transform: rotate(5deg); }
+  }
 
-/* Buttons */
-.buttons {
-  position: relative;
-  margin-top: 3rem;
-}
+  .buttons {
+    position: relative;
+    margin-top: 4.5rem;
+    min-height: 220px; /* plenty of room for growth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px; /* space between buttons */
+    flex-wrap: wrap;
+  }
 
-button {
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 18px 36px;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
+  button {
+    font-family: inherit;
+    font-size: 1.25rem;
+    padding: 24px 60px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.28);
+    touch-action: manipulation; /* better mobile touch */
+  }
 
-#yesBtn {
-  background: #4caf50;
-  color: white;
-}
+  #yesBtn {
+    background: #66bb6a;
+    color: white;
+    z-index: 3;
+    position: relative;
+  }
+  #yesBtn:hover {
+    transform: scale(1.18) rotate(-3deg);
+    box-shadow: 0 18px 45px rgba(102,187,106,0.55);
+  }
 
-#yesBtn:hover {
-  transform: scale(1.1) rotate(-2deg);
-}
+  #noBtn {
+    background: #ef5350;
+    color: white;
+    padding: 26px 65px;
+    z-index: 10 !important; /* always on top */
+    position: relative; /* no absolute → stays in flow */
+  }
+  #noBtn:hover {
+    background: #e53935;
+    transform: scale(1.12) rotate(3deg);
+    box-shadow: 0 18px 45px rgba(239,83,80,0.5);
+  }
 
-#noBtn {
-  background: #f44336;
-  color: white;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
+  #noMessage {
+    font-size: 1.4rem;
+    color: #c2185b;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    min-height: 3rem;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(15px);
+  }
+  #noMessage.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-/* Success page */
-#success-page {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  animation: pop 1s ease forwards;
-}
-
-@keyframes pop {
-  from { transform: scale(0.6); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-.heart {
-  font-size: 3rem;
-  margin: 1rem 0;
-}
-
-p {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  max-width: 500px;
-}
+  #success-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    animation: pop 1.3s ease forwards;
+  }
+  @keyframes pop {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .heart {
+    font-size: 5.5rem;
+    margin: 2.5rem 0;
+  }
+  p {
+    font-size: 1.15rem;
+    line-height: 2.1;
+    max-width: 520px;
+    color: #444;
+  }
 </style>
 </head>
-
 <body>
 
-<!-- Floating hearts -->
 <script>
-for (let i = 0; i < 20; i++) {
+// Floating elements — slower & fewer for calmer feel
+for (let i = 0; i < 15; i++) {
   const heart = document.createElement("div");
   heart.className = "pixel-heart";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDelay = Math.random() * 5 + "s";
-  heart.style.opacity = Math.random();
+  heart.style.animationDelay = Math.random() * 10 + "s";
+  heart.style.animationDuration = (10 + Math.random() * 8) + "s";
   document.body.appendChild(heart);
+}
+const bearUrls = [
+  'https://thumbs.dreamstime.com/b/ai-generated-illustration-pixel-art-teddy-bear-heart-shaped-balloons-ai-generated-illustration-pixel-art-317644629.jpg',
+  'https://thumbs.dreamstime.com/b/pixel-art-teddy-bear-holds-sign-valentini-red-heart-holding-rose-surrounded-floating-hearts-two-small-400231832.jpg',
+  'https://www.shutterstock.com/shutterstock/photos/1310607620/display_1500/stock-vector-pixel-little-bear-holding-balloons-bit-valentine-s-day-1310607620.jpg'
+];
+for (let i = 0; i < 10; i++) {
+  const bear = document.createElement("div");
+  bear.className = "pixel-bear";
+  bear.style.backgroundImage = `url('${bearUrls[i % bearUrls.length]}')`;
+  bear.style.left = Math.random() * 100 + "vw";
+  bear.style.animationDelay = Math.random() * 12 + "s";
+  bear.style.animationDuration = (12 + Math.random() * 10) + "s";
+  bear.style.opacity = 0.65 + Math.random() * 0.25;
+  document.body.appendChild(bear);
 }
 </script>
 
 <div id="question-page" class="card">
-  <h1>Hayyyatiii, ill you be my Valentine? 💕</h1>
+  <h1><span class="bear-decor">🧸</span> Hayyyatiii, will you be my Valentine? <span class="bear-decor">🧸</span> 💕</h1>
+  
+  <div id="noMessage"></div>
 
   <div class="buttons">
     <button id="yesBtn">YES 🥰</button>
@@ -143,42 +213,70 @@ for (let i = 0; i < 20; i++) {
 
 <div id="success-page">
   <div class="card">
-    <div class="heart">💖💖💖</div>
-    <h1>YEEEEEEPIIIII 💕</h1>
+    <div class="heart">💖🧸💖</div>
+    <h1>YEEEEEEPIIIII 💕🧸</h1>
     <p>
       We meet at <strong>4:00 pm</strong><br>
       at <strong>Bochum HBF</strong> 🚉<br><br>
       Cute café ☕<br>
       Secret surprise 🎁<br><br>
-      I can’t wait to see you 🫶
+      I can’t wait to see you 🫶🧸
     </p>
   </div>
 </div>
 
 <script>
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const questionPage = document.getElementById('question-page');
-const successPage = document.getElementById('success-page');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const noMessage = document.getElementById('noMessage');
+  const questionPage = document.getElementById('question-page');
+  const successPage = document.getElementById('success-page');
 
-let yesSize = 1;
+  let yesSize = 1;
+  const messages = [
+    "Hmm... playing hard to get? 😏",
+    "Oof, bold choice... but okay 👀",
+    "You sure? I make great coffee dates ☕",
+    "Teasing me already? Cute 🧸",
+    "Still resisting? Challenge accepted 😉",
+    "You're making this fun... keep going? 😼",
+    "One more no and the teddy gets jealous 🐻💕"
+  ];
+  let clickCount = 0;
 
-noBtn.addEventListener('mouseover', () => {
-  noBtn.style.left = Math.random() * 60 + "%";
-  noBtn.style.top = Math.random() * 60 + "%";
-  noBtn.style.position = "fixed";
-});
+  noBtn.addEventListener('mouseover', () => {
+    const rx = Math.random() * 30 - 15; // smaller, gentler movement
+    const ry = Math.random() * 30 - 15;
+    noBtn.style.transform = `translate(${rx}px, ${ry}px) scale(1.1)`;
+  });
 
-noBtn.addEventListener('click', () => {
-  yesSize += 0.4;
-  yesBtn.style.transform = `scale(${yesSize})`;
-});
+  noBtn.addEventListener('mouseout', () => {
+    noBtn.style.transform = 'translate(0, 0) scale(1)';
+  });
 
-yesBtn.addEventListener('click', () => {
-  questionPage.style.display = "none";
-  successPage.style.display = "flex";
-});
+  noBtn.addEventListener('click', () => {
+    clickCount++;
+    yesSize += 0.38; // slower, more gradual growth
+    yesBtn.style.transform = `scale(${yesSize})`;
+    yesBtn.style.padding = `${24 + yesSize * 10}px ${60 + yesSize * 15}px`;
+
+    // Playful message
+    const msg = messages[(clickCount - 1) % messages.length];
+    noMessage.textContent = msg;
+    noMessage.classList.add('show');
+    setTimeout(() => noMessage.classList.remove('show'), 2800);
+
+    // After many clicks, NO shrinks a tiny bit for fun
+    if (clickCount > 8) {
+      noBtn.style.padding = '20px 50px';
+      noBtn.style.fontSize = '1.1rem';
+    }
+  });
+
+  yesBtn.addEventListener('click', () => {
+    questionPage.style.display = "none";
+    successPage.style.display = "flex";
+  });
 </script>
-
 </body>
 </html>
